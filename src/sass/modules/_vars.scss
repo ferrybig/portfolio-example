@@ -1,3 +1,5 @@
 $primary: hsl(70, 50, 70);
 $primary-light: lighten($primary, 10);
+$primary-lightest: lighten($primary, 20);
 $primary-darker: darken($primary, 10);
+$primary-darkerest: darken($primary, 20);

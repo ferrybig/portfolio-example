@@ -8,6 +8,7 @@ gulp.task('watch', function () {
 	gulp.watch('src/sass/**/*.scss', ['lint:scss', 'styles']);
 	gulp.watch('src/js/**/*.js', ['lint:javascript', 'javascript']);
 	gulp.watch('src/*.html', ['replace']);
+	gulp.watch('src/**/*', ['copy']);
 });
 
 gulp.task('watch:gulp', function () {
