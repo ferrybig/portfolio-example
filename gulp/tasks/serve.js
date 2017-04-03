@@ -17,3 +17,20 @@ gulp.task('serve', function () {
 	watch('public/**/*')
 		.pipe(reload({stream: true}));
 });
+gulp.task('serve:reload:css', function () {
+	return gulp.src("public/*.css")
+        .pipe(browserSync.stream());
+});
+
+gulp.task('serve:reload:html', function () {
+	return gulp.src("public/*.html")
+        .pipe(browserSync.stream());
+});
+gulp.task('serve:reload:all', function () {
+	return gulp.src("public/**/*")
+        .pipe(browserSync.stream());
+});
+gulp.task('serve:reload:js', function () {
+	return gulp.src("public/*.js")
+        .pipe(browserSync.stream());
+});

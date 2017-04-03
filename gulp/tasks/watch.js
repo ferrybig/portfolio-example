@@ -4,11 +4,13 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
 var spawn = require('child_process').spawn;
+var runSequence = require('run-sequence').use(gulp);
+
 gulp.task('watch', function () {
-	gulp.watch('src/sass/**/*.scss', ['lint:scss', 'styles']);
-	gulp.watch('src/js/**/*.js', ['lint:javascript', 'javascript']);
-	gulp.watch('src/*.html', ['replace']);
-	gulp.watch('src/**/*', ['copy']);
+	gulp.watch('src/sass/**/*.scss', ['watch:trigger:scss']);
+	gulp.watch('src/js/**/*.js', ['watch:trigger:js']);
+	gulp.watch('src/*.html', ['watch:trigger:html']);
+	gulp.watch(['src/**/*', '!src/sass/**/*.scss', '!src/js/**/*.js'], ['watch:trigger:other']);
 });
 
 gulp.task('watch:gulp', function () {
@@ -26,4 +28,17 @@ gulp.task('watch:gulp', function () {
 		// `spawn` a child `gulp` process linked to the parent `stdio`
 		p = spawn('gulp', [], {stdio: 'inherit'});
 	}
+});
+
+gulp.task('watch:trigger:scss', function (cb) {
+	runSequence('lint:scss', 'styles', 'serve:reload:css', cb);
+});
+gulp.task('watch:trigger:js', function (cb) {
+	runSequence('lint:javascript', 'javascript', 'serve:reload:js', cb);
+});
+gulp.task('watch:trigger:html', function (cb) {
+	runSequence('replace', 'serve:reload:html', cb);
+});
+gulp.task('watch:trigger:other', function (cb) {
+	runSequence('copy', 'serve:reload:all', cb);
 });

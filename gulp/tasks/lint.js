@@ -7,6 +7,8 @@ var sassLint = require('gulp-sass-lint');
 var jshint = require('gulp-jshint');
 var ignore = require('gulp-ignore');
 var notify = require("gulp-notify");
+var notifier = require('node-notifier');
+var cache = require('gulp-cached');
 
 
 gulp.task('lint', function (cb) {
@@ -14,7 +16,18 @@ gulp.task('lint', function (cb) {
 });
 
 gulp.task('lint:scss', function () {
+	var myCustomReporter = function(file) {
+		sassLint.defaultReporter(file);
+		if (file.scsslint.issues.length !== 0) {
+			notifier.notify({ 
+				title: file.path, 
+				message: file.scsslint.issues.length + ' issues found'
+			});
+		}
+	};
+	
 	return gulp.src('src/sass/**/*.scss')
+    .pipe(cache('scsslint'))
 	.pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
 	.pipe(sassLint({
 		'files': {
@@ -32,7 +45,8 @@ gulp.task('lint:scss', function () {
 			'empty-line-between-blocks': 0,
 			'leading-zero': 0,
 			'no-ids': 0
-		}
+		},
+		customReport: myCustomReporter
 	}))
 
 	.pipe(sassLint.format())

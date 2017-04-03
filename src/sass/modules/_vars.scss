@@ -1,5 +1,11 @@
-$primary: hsl(70, 50, 70);
+$primary: hsl(90, 60, 70);
 $primary-light: lighten($primary, 10);
 $primary-lightest: lighten($primary, 20);
-$primary-darker: darken($primary, 10);
-$primary-darkerest: darken($primary, 20);
+$primary-dark: darken($primary, 10);
+$primary-darkest: darken($primary, 20);
+
+$secondary: hsl(90, 60, 30);
+$secondary-light: lighten($secondary, 10);
+$secondary-lightest: lighten($secondary, 20);
+$secondary-dark: darken($secondary, 10);
+$secondary-darkest: darken($secondary, 20);
