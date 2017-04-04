@@ -7,19 +7,21 @@
 	&-header {
 		flex: 30;
 		width: 30%;
-		margin: 1em 0.5em 1em 1em;
-		padding: 1em;
+		margin: 2em 0.5em 0em 2em;
 		background-color: $primary-light;
 	}
 	&-body {
 		flex: 70;
 		width: 70%;
-		margin: 1em 0.5em 1em 1em;
-		padding: 1em;
+		margin: 2em 4em 0em 0.5em;
+		padding: 1em 1em 4em;
 		background-color: $primary-light;
 		h1 {
 			font-size: 3.5em;
 			margin: 0 0 0.2em;
+		}
+		.subtitle {
+			display: block;
 		}
 	}
 	&-footer {
