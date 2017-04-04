@@ -1,0 +1,15 @@
+.grid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	a {
+		width: 30%;
+		padding: 2px;
+		flex-grow: 1;
+		font-size: 0;
+		img {
+			width: 100%;
+		}
+	}
+}

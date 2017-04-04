@@ -1,0 +1,21 @@
+.section-experience {
+	display: flex;
+	flex-wrap: wrap;
+	h3 {
+		width: 100%;
+	}
+	.experience {
+		width: 50%;
+		box-sizing: border-box;
+		padding: 0.5em;
+		flex-grow: 1;
+		h4,
+		p {
+			margin: 0.25em 0;
+		}
+		small,
+		p {
+			font-style: italic;
+		}
+	}
+}

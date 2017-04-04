@@ -1,0 +1,29 @@
+.skillbar {
+	display: block;
+	position: relative;
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid $secondary-lightest;
+	background-color: $primary-lightest;
+	color: $secondary-lightest;
+	margin: 0.5em;
+	&::after {
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		position: absolute;
+		content: attr(data-language);
+		color: $primary-lightest;
+		background-color: $secondary-light;
+		pointer-events: none;
+	}
+	@for $i from 1 through 100 {
+		&-#{$i} {
+			&::after {
+				clip: rect(0, 0% + $i, 0, 0);
+				clip-path: inset(0 0% + $i 0 0);
+			}
+		}
+	}
+}
